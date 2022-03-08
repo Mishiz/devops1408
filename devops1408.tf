@@ -58,7 +58,9 @@ resource "digitalocean_droplet" "dev1408" {
       "apt install -y maven",
       "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git",
       "cd ./boxfuse-sample-java-war-hello",
-      "mvn package"
+      "mvn package",
+      "rm -rf /var/lib/tomcat9/webapps/*",
+      "mv /root/boxfuse-sample-java-war-hello/target/hello-1.0.war /var/lib/tomcat9/webapps/ROOT.war"
 
 
     ]
