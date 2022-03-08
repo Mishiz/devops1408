@@ -16,6 +16,7 @@ provider "digitalocean" {
 
 data "digitalocean_ssh_key" "terraform" {
   name = "terraform"
+
 }
 
 resource "digitalocean_droplet" "dev1408" {
@@ -27,6 +28,8 @@ resource "digitalocean_droplet" "dev1408" {
   ssh_keys = [
     data.digitalocean_ssh_key.terraform.id
   ]
+
+}
 
   connection {
     host = self.ipv4_address
