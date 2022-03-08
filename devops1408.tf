@@ -48,7 +48,6 @@ resource "digitalocean_droplet" "dev1408" {
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      # install nginx
       "apt update",
       "apt install -y nginx",
       "apt install -y default-jdk",
