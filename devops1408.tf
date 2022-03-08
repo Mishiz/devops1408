@@ -7,8 +7,10 @@ terraform {
   }
 }
 
+variable "do_token" {}
+
 provider "digitalocean" {
-  token = file(/root/.ssh/do_token)
+  token = var.do_token
 }
 
 data "digitalocean_ssh_key" "terraform" {
