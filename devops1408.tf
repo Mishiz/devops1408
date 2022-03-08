@@ -47,12 +47,10 @@ resource "digitalocean_droplet" "dev1408" {
 
   provisioner "remote-exec" {
     inline = [
-      "export PATH=$PATH:/usr/bin",
       "apt update",
       "apt install -y nginx",
       "apt install -y default-jdk",
       "apt install -y git",
-      "apt install -y s3cmd",
       "apt install -y tomcat9",
       "apt install -y maven",
       "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git",
@@ -60,7 +58,6 @@ resource "digitalocean_droplet" "dev1408" {
       "mvn package",
       "rm -rf /var/lib/tomcat9/webapps/*",
       "mv /root/boxfuse-sample-java-war-hello/target/hello-1.0.war /var/lib/tomcat9/webapps/ROOT.war"
-
 
     ]
 
