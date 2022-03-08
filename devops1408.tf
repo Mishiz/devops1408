@@ -8,6 +8,7 @@ terraform {
 }
 
 variable "do_token" {}
+variable "pvt_key" {}
 
 provider "digitalocean" {
   token = var.do_token
@@ -30,7 +31,7 @@ resource "digitalocean_droplet" "dev1408" {
     host        = self.ipv4_address
     user        = "root"
     type        = "ssh"
-    private_key = file(/root/.ssh/id_rsa)
+    private_key = file(var.pvt_key)
     timeout     = "2m"
   }
 
