@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = $do_token
+  token = file(/root/.ssh/do_token)
 }
 
 data "digitalocean_ssh_key" "terraform" {
