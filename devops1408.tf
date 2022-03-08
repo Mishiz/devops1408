@@ -53,18 +53,15 @@ resource "digitalocean_droplet" "dev1408" {
       "apt install -y nginx",
       "apt install -y default-jdk",
       "apt install -y git",
+      "apt install -y s3cmd"
       "apt install -y maven",
       "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git",
       "cd ./boxfuse-sample-java-war-hello",
       "mvn package"
-    ]
-    resource "digitalocean_spaces_bucket_object" "war" {
-      region       = digitalocean_spaces_bucket.dev1408s.region
-      bucket       = digitalocean_spaces_bucket.dev1408s.name
-      key          = "ROOT.WAR"
-      source       = "/root/boxfuse-sample-java-war-hello/target/hello-1.0.war"
+      "s3cmd put /root/boxfuse-sample-java-war-hello/target/hello-1.0.war s3://dev1408/ROOT.war"
 
-    }
+    ]
+
   }
 }
 
