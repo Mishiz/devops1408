@@ -47,4 +47,3 @@ resource "digitalocean_droplet" "dev1408" {
       "sudo apt install -y nginx"
     ]
   }
-}
