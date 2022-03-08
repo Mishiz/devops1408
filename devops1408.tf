@@ -54,11 +54,12 @@ resource "digitalocean_droplet" "dev1408" {
       "apt install -y default-jdk",
       "apt install -y git",
       "apt install -y s3cmd",
+      "apt install -y tomcat9",
       "apt install -y maven",
       "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git",
       "cd ./boxfuse-sample-java-war-hello",
-      "mvn package",
-      "s3cmd put /root/boxfuse-sample-java-war-hello/target/hello-1.0.war s3://dev1408/ROOT.war"
+      "mvn package"
+
 
     ]
 
