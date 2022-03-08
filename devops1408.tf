@@ -10,6 +10,7 @@ terraform {
 variable "do_token" {}
 variable "pvt_key" {}
 
+
 provider "digitalocean" {
   token = var.do_token
 }
@@ -39,8 +40,14 @@ resource "digitalocean_droplet" "dev1408" {
     inline = [
       "export PATH=$PATH:/usr/bin",
       # install nginx
-      "sudo apt update",
-      "sudo apt install -y nginx"
+      "apt update",
+      "apt install -y nginx",
+      "apt install -y default-jdk",
+      "apt install -y git",
+      "apt install -y maven",
+      "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git",
+      "cd ./boxfuse-sample-java-war-hello",
+      "mvn package"
     ]
   }
 }
