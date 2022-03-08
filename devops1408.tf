@@ -9,10 +9,14 @@ terraform {
 
 variable "do_token" {}
 variable "pvt_key" {}
-
+variable "access_id" {}
+variable "secret_key" {}
 
 provider "digitalocean" {
   token = var.do_token
+  spaces_access_id  = var.access_id
+  spaces_secret_key = var.secret_key
+
 }
 
 data "digitalocean_ssh_key" "terraform" {
@@ -51,3 +55,8 @@ resource "digitalocean_droplet" "dev1408" {
     ]
   }
 }
+resource "digitalocean_spaces_bucket" "dev1408s" {
+  name   = "dev1408s"
+  region = "fra1"
+}
+
