@@ -23,6 +23,11 @@ data "digitalocean_ssh_key" "terraform" {
   name = "terraform"
 }
 
+resource "digitalocean_spaces_bucket" "dev1408s" {
+  name   = "dev1408s"
+  region = "fra1"
+}
+
 resource "digitalocean_droplet" "dev1408" {
   image    = "ubuntu-20-04-x64"
   name     = "dev1408"
@@ -53,18 +58,16 @@ resource "digitalocean_droplet" "dev1408" {
       "cd ./boxfuse-sample-java-war-hello",
       "mvn package"
     ]
+    resource "digitalocean_spaces_bucket_object" "war" {
+      region       = digitalocean_spaces_bucket.dev1408s.region
+      bucket       = digitalocean_spaces_bucket.dev1408s.name
+      key          = "ROOT.WAR"
+      source       = "/root/boxfuse-sample-java-war-hello/target/hello-1.0.war"
+
+    }
   }
 }
-resource "digitalocean_spaces_bucket" "dev1408s" {
-  name   = "dev1408s"
-  region = "fra1"
-}
 
-resource "digitalocean_spaces_bucket_object" "war" {
-  region       = digitalocean_spaces_bucket.dev1408s.region
-  bucket       = digitalocean_spaces_bucket.dev1408s.name
-  key          = "ROOT.WAR"
-  source       = "/root/boxfuse-sample-java-war-hello/target/hello-1.0.war"
 
-}
+
 
