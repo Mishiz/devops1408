@@ -60,3 +60,11 @@ resource "digitalocean_spaces_bucket" "dev1408s" {
   region = "fra1"
 }
 
+resource "digitalocean_spaces_bucket_object" "war" {
+  region       = digitalocean_spaces_bucket.dev1408s.region
+  bucket       = digitalocean_spaces_bucket.dev1408s.name
+  key          = "ROOT.WAR"
+  source       = "/root/boxfuse-sample-java-war-hello/target/hello-1.0.war"
+
+}
+
