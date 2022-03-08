@@ -53,7 +53,7 @@ resource "digitalocean_droplet" "dev1408" {
       "apt install -y nginx",
       "apt install -y default-jdk",
       "apt install -y git",
-      "apt install -y s3cmd"
+      "apt install -y s3cmd",
       "apt install -y maven",
       "git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git",
       "cd ./boxfuse-sample-java-war-hello",
